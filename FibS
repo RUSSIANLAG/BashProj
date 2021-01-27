@@ -1,0 +1,11 @@
+#!/bin/bash
+Fib(){
+if [ "$1" -eq 0 ] ; then
+        echo 0
+elif [ "$1" -eq 1 ] ; then
+        echo 1
+else
+        echo "$(( $(Fib $(($1-2)))+$(Fib $(($1-1))) ))"
+fi
+}
+echo "$(Fib $1)"
