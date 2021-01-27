@@ -1,0 +1,16 @@
+#!/bin/bash
+x=$1 ; y=$2
+typset -n count=$1
+echo "  time in seconds"
+echo -e "n \t  FibS(n) \t  FibD(n)"
+echo -e "- \t  ------- \t  ------"
+while [ "$x" -le "$y" ] ; do
+        start=$(date +%s.%4N)
+        ./FibS $x >> /dev/null 
+        dur=$(echo "$(date +%s.%4N) - $start" | bc)
+        tstart=$(date +%s.%4N)
+        ./FibD $x >> /dev/null 
+        tdur=$(echo "$(date +%s.%4N) - $tstart" | bc)
+echo -e "$x  \t  $dur"s"  \t  $tdur"s""
+x=$(($x + 1))  
+done
