@@ -1,0 +1,18 @@
+#!/bin/bash
+SAVED=()
+Fib () {
+local n=$1
+if [ "$n" -eq 0 ] ; then
+        ((SAVED[0]=0))
+elif [ "$n" -eq 1 ] ; then
+        ((SAVED[1]=1))
+elif [ "${SAVED[$n]}" ] ; then
+        return
+else
+        Fib "$((n-1))"
+        Fib "$((n-2))"
+        ((SAVED[n]=SAVED[n-1]+SAVED[n-2]))
+fi
+}
+Fib "$1"
+echo "${SAVED[$1]}"
